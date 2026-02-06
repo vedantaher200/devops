@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Integration (CI) | DevOps Deep Dive</title>
+    <style>
+        :root {
+            --bg-color: #020617;
+            --card-bg: #0f172a;
+            --card-border: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #22d3ee;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .section:hover {
+            border-color: var(--accent-secondary);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* CI Pipeline Steps Styling */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-primary);
+            position: relative;
+        }
+
+        .step-num {
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Grid for benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icon-box {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-primary);
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Tools Tags */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .tool-tag {
+            background: var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tool-tag:hover {
+            border-color: var(--accent-primary);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .back-link svg {
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 640px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Continuous Integration</h1>
+        <p class="subtitle">The foundation of high-velocity software delivery.</p>
+    </header>
+
+    <div class="section">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            What is CI?
+        </h2>
+        <p>
+            Continuous Integration (CI) is the practice of automating the integration of code changes from multiple contributors into a single software project. It allows teams to detect errors quickly, improve software quality, and reduce the time it takes to validate and release new updates.
+        </p>
+        <p>
+            The core philosophy is simple: <strong>Integrate early and integrate often.</strong> By merging code several times a day, developers avoid the "integration hell" that occurs when massive features are merged after weeks of isolated development.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            The Automated Workflow
+        </h2>
+        <p>A standard CI pipeline consists of several automated stages triggered by a code commit:</p>
+        
+        <div class="pipeline">
+            <div class="step">
+                <span class="step-num">01. Commit</span>
+                <span class="step-title">Developer pushes code to a shared branch.</span>
+            </div>
+            <div class="step">
+                <span class="step-num">02. Build</span>
+                <span class="step-title">The CI server compiles code and handles dependencies.</span>
+            </div>
+            <div class="step">
+                <span class="step-num">03. Test</span>
+                <span class="step-title">Unit and integration tests run automatically.</span>
+            </div>
+            <div class="step">
+                <span class="step-num">04. Report</span>
+                <span class="step-title">Developers receive instant feedback on build health.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Key Benefits
+        </h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="icon-box">✓</div>
+                <div>
+                    <strong>Early Bug Detection</strong>
+                    <p style="font-size: 0.9rem;">Automated tests find issues minutes after code is written.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="icon-box">✓</div>
+                <div>
+                    <strong>Higher Quality</strong>
+                    <p style="font-size: 0.9rem;">Consistent linting and testing ensures code standards are met.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="icon-box">✓</div>
+                <div>
+                    <strong>Reduced Risk</strong>
+                    <p style="font-size: 0.9rem;">Smaller, frequent updates make debugging significantly easier.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="icon-box">✓</div>
+                <div>
+                    <strong>Team Velocity</strong>
+                    <p style="font-size: 0.9rem;">Reduces manual overhead, letting devs focus on building features.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Popular Ecosystem Tools
+        </h2>
+        <p>The choice of tool often depends on your hosting provider and team scale:</p>
+        <div class="tools-container">
+            <div class="tool-tag">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub Actions
+            </div>
+            <div class="tool-tag">GitLab CI</div>
+            <div class="tool-tag">Jenkins</div>
+            <div class="tool-tag">CircleCI</div>
+            <div class="tool-tag">Travis CI</div>
+            <div class="tool-tag">Azure Pipelines</div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to DevOps Overview
+    </a>
+</div>
+
+</body>
+</html>

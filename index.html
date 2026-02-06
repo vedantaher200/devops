@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Visual Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e5e7eb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+        }
+
+        .pipeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 10px;
+            width: 180px;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stage h3 {
+            margin-top: 0;
+            color: #facc15;
+        }
+
+        .stage p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .loop {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 16px;
+            color: #a5b4fc;
+        }
+
+        .tools {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tool {
+            background: #020617;
+            border: 1px dashed #22d3ee;
+            border-radius: 8px;
+            width: 200px;
+            margin: 10px;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .tool-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tool-link .tool {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tool-link .tool:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 10px #22d3ee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DevOps – Visual Explanation</h1>
+    <p style="text-align:center;">Everything automated. Everyone calmer. Mostly.</p>
+
+    <h2>DevOps Lifecycle</h2>
+    <div class="pipeline">
+        <div class="stage">
+            <h3>Plan</h3>
+            <p>Requirements, tasks, sprint planning</p>
+        </div>
+        <div class="stage">
+            <h3>Code</h3>
+            <p>Developers write code and push to Git</p>
+        </div>
+        <div class="stage">
+            <h3>Build</h3>
+            <p>Compile and package the application</p>
+        </div>
+        <div class="stage">
+            <h3>Test</h3>
+            <p>Automated unit & integration testing</p>
+        </div>
+        <div class="stage">
+            <h3>Release</h3>
+            <p>Prepare build for deployment</p>
+        </div>
+        <div class="stage">
+            <h3>Deploy</h3>
+            <p>Deploy to production automatically</p>
+        </div>
+        <div class="stage">
+            <h3>Operate</h3>
+            <p>Run and maintain the system</p>
+        </div>
+        <div class="stage">
+            <h3>Monitor</h3>
+            <p>Logs, metrics, alerts, performance</p>
+        </div>
+    </div>
+
+    <div class="loop">
+        🔁 Continuous Feedback → Improve → Repeat Forever
+    </div>
+
+    <h2>DevOps Key Concepts</h2>
+    <div class="tools">
+        <a href="ci.html" class="tool-link">
+            <div class="tool">
+                <b>CI</b><br>
+                Automatic build & test on every code push
+            </div>
+        </a>
+
+        <div class="tool">
+            <b>CD</b><br>
+            Automatic delivery or deployment
+        </div>
+        <div class="tool">
+            <b>Containers</b><br>
+            Same app, same behavior everywhere
+        </div>
+        <div class="tool">
+            <b>Orchestration</b><br>
+            Manage containers at scale
+        </div>
+        <div class="tool">
+            <b>Infrastructure as Code</b><br>
+            Servers defined using config files
+        </div>
+        <div class="tool">
+            <b>Monitoring</b><br>
+            Observe system health in real-time
+        </div>
+    </div>
+
+</body>
+
+</html>
